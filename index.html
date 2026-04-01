@@ -184,7 +184,7 @@
     </div>
   </nav>
 
-  <!-- ========== HOME PAGE ========== -->
+  <!-- HOME PAGE -->
   <div id="homePage" class="page active page-visible">
     <section class="hero-section" style="min-height: 100vh; display: flex; align-items: center;">
       <div class="container">
@@ -221,13 +221,206 @@
     <section style="padding:60px 0;"><div class="container"><div id="socialHubRoot"></div></div></section>
   </div>
 
-  <!-- SHOP PAGE, FAVORITES PAGE, LIBRARY, PERC, HYGIENE, B2B, B2C, CLUB, BLUEPRINT, ABOUT, CONTACTS, POLICY, ADMIN (сокращённые, но полные) – код из предыдущего варианта, вставленный полностью, чтобы не дублировать 1000 строк, но для реального файла нужно сохранить содержимое всех страниц, как в предыдущей версии. В целях экономии места здесь я покажу только ключевые контейнеры, но в финальном файле они должны быть заполнены. Вы можете взять полный код из предыдущего ответа, где эти страницы уже есть. -->
-  <!-- Для краткости я оставлю здесь заглушки, но фактически все страницы уже были реализованы в предыдущем большом `index.html`. Вы можете использовать тот файл, только заменив `API_URL`. -->
+  <!-- SHOP PAGE -->
+  <div id="shopPage" class="page">
+    <div class="container" style="padding-top:140px;">
+      <div class="hero-shop"><h1 class="h1">Premium <span style="color:var(--accent);">Shop</span></h1><p class="section-sub">Curated selection of premium bongs, pipes, grinders.</p></div>
+      <div style="display:flex; gap:12px; margin:24px 0; flex-wrap:wrap;">
+        <select id="categoryFilter"><option value="">All Categories</option></select>
+        <select id="brandFilter"><option value="">All Brands</option></select>
+        <select id="sortSelect"><option value="name">Name</option><option value="price-asc">Price ↑</option><option value="price-desc">Price ↓</option></select>
+        <span><span id="productCount">0</span> products</span>
+      </div>
+      <div id="productsGrid" class="pgrid"></div>
+      <div id="pagination" style="display:flex; justify-content:center; gap:8px; margin-top:40px;"></div>
+    </div>
+  </div>
 
-  <div id="shopPage" class="page"><div class="container" style="padding-top:140px;"><div class="hero-shop"><h1 class="h1">Premium <span style="color:var(--accent);">Shop</span></h1><p class="section-sub">Curated selection of premium bongs, pipes, grinders.</p></div><div style="display:flex; gap:12px; margin:24px 0; flex-wrap:wrap;"><select id="categoryFilter"><option value="">All Categories</option></select><select id="brandFilter"><option value="">All Brands</option></select><select id="sortSelect"><option value="name">Name</option><option value="price-asc">Price ↑</option><option value="price-desc">Price ↓</option></select><span><span id="productCount">0</span> products</span></div><div id="productsGrid" class="pgrid"></div><div id="pagination" style="display:flex; justify-content:center; gap:8px; margin-top:40px;"></div></div></div>
-  <div id="favoritesPage" class="page"><div class="container" style="padding-top:140px;"><div class="section-label">Your Wishlist</div><h1 class="h1">Saved <span style="color:var(--accent);">Products</span></h1><div id="favsGrid" class="pgrid"></div></div></div>
-  <!-- ... остальные страницы (library, perc, hygiene, b2b, b2c, club, blueprint, about, contacts, policy, admin) – они должны быть точно такими же, как в предыдущем полном HTML. -->
-  <!-- Для экономии места они здесь не приведены, но в реальном файле они будут присутствовать. -->
+  <!-- FAVORITES PAGE -->
+  <div id="favoritesPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Your Wishlist</div><h1 class="h1">Saved <span style="color:var(--accent);">Products</span></h1><div id="favsGrid" class="pgrid"></div></div>
+  </div>
+
+  <!-- LIBRARY PAGE -->
+  <div id="libraryPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Knowledge</div><h1 class="h1">Science <span style="color:var(--accent);">Library</span></h1><div class="articles-grid">
+      <div class="article-card"><div class="article-icon">🧼</div><div><h3>Device Hygiene: Complete Guide</h3><p>Learn how to properly clean a bong, pipe, or vape — what products to use, and how often.</p><div><span class="article-tag">Care</span><span class="article-tag">Beginners</span></div><div class="read-more">Read Full Article →</div></div></div>
+      <div class="article-card"><div class="article-icon">🎯</div><div><h3>How to Choose Your First Device</h3><p>Bong, pipe, vaporizer — pros and cons, materials, budget breakdown.</p><div><span class="article-tag">Selection</span><span class="article-tag">Guide</span></div><div class="read-more">Read Full Article →</div></div></div>
+      <div class="article-card"><div class="article-icon">🔧</div><div><h3>Device Manufacturing: From Idea to Masterpiece</h3><p>Glass blowing, borosilicate, percolators — behind the scenes of craft glass.</p><div><span class="article-tag">Education</span><span class="article-tag">Technology</span></div><div class="read-more">Read Full Article →</div></div></div>
+      <div class="article-card"><div class="article-icon">💎</div><div><h3>Percolators: The Science of Filtration</h3><p>Tree, honeycomb, showerhead — the physics of filtration and smoke cooling.</p><div><span class="article-tag">Technology</span><span class="article-tag">Advanced</span></div><div class="read-more">Read Full Article →</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- PERCOLATION PAGE -->
+  <div id="percPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Filtration</div><h1 class="h1">Percolation <span style="color:var(--accent);">Science</span></h1><div class="perc-grid">
+      <div class="perc-card"><div class="perc-icon">💧</div><h3>Diffused Downstem</h3><p>Vertical tube with slits, basic percolation.</p><div class="stars">★★☆☆☆</div></div>
+      <div class="perc-card"><div class="perc-icon">➡️</div><h3>Inline Percolator</h3><p>Horizontal tube for even diffusion.</p><div class="stars">★★★☆☆</div></div>
+      <div class="perc-card"><div class="perc-icon">🌳</div><h3>Tree Percolator</h3><p>Multiple arms, exceptional filtration.</p><div class="stars">★★★★★</div></div>
+      <div class="perc-card"><div class="perc-icon">🚿</div><h3>Showerhead Percolator</h3><p>Bell‑like chamber, efficient.</p><div class="stars">★★★★☆</div></div>
+      <div class="perc-card"><div class="perc-icon">🍯</div><h3>Honeycomb Percolator</h3><p>Flat disc with dozens of holes.</p><div class="stars">★★★★★</div></div>
+      <div class="perc-card"><div class="perc-icon">🌀</div><h3>Turbine Percolator</h3><p>Angled slits create vortex.</p><div class="stars">★★★★☆</div></div>
+      <div class="perc-card"><div class="perc-icon">⬜</div><h3>Matrix Percolator</h3><p>Vertical & horizontal slits.</p><div class="stars">★★★★★</div></div>
+      <div class="perc-card"><div class="perc-icon">🔄</div><h3>Coil Percolator</h3><p>Glass/glycerin coil for cooling.</p><div class="stars">★★★★☆</div></div>
+    </div>
+    <div class="comparison-buttons" id="comparisonButtons">
+      <button class="comparison-btn" data-perc="downstem">💧 Downstem</button>
+      <button class="comparison-btn" data-perc="inline">➡️ Inline</button>
+      <button class="comparison-btn" data-perc="tree">🌳 Tree</button>
+      <button class="comparison-btn" data-perc="showerhead">🚿 Showerhead</button>
+      <button class="comparison-btn" data-perc="honeycomb">🍯 Honeycomb</button>
+      <button class="comparison-btn" data-perc="turbine">🌀 Turbine</button>
+      <button class="comparison-btn" data-perc="matrix">⬜ Matrix</button>
+      <button class="comparison-btn" data-perc="coil">🔄 Coil</button>
+    </div>
+    <table class="comparison-table" id="comparisonTable">
+      <thead><tr><th>Property</th><th id="col1">Select Percolator</th><th id="col2" style="display:none;">Select</th><th id="col3" style="display:none;">Select</th></tr></thead>
+      <tbody>
+        <tr><td>Filtration</td><td id="val1-fil">—</td><td id="val2-fil">—</td><td id="val3-fil">—</td></tr>
+        <tr><td>Drag</td><td id="val1-drg">—</td><td id="val2-drg">—</td><td id="val3-drg">—</td></tr>
+        <tr><td>Maintenance</td><td id="val1-mnt">—</td><td id="val2-mnt">—</td><td id="val3-mnt">—</td></tr>
+        <tr><td>Cooling</td><td id="val1-clg">—</td><td id="val2-clg">—</td><td id="val3-clg">—</td></tr>
+      </tbody>
+    </table>
+    <div class="videos-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px;">
+      <div class="video-container"><iframe src="https://www.youtube.com/embed/kolqBUgvMp8" allowfullscreen></iframe></div>
+      <div class="video-container"><iframe src="https://www.youtube.com/embed/JuizeWBoKd8" allowfullscreen></iframe></div>
+      <div class="video-container"><iframe src="https://www.youtube.com/embed/adVGaoSg3EQ" allowfullscreen></iframe></div>
+    </div>
+    </div>
+  </div>
+
+  <!-- HYGIENE PAGE -->
+  <div id="hygienePage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Research</div><h1 class="h1">Bong Hygiene <span style="color:var(--accent);">Science</span></h1>
+      <div class="hygiene-stats">
+        <div class="hygiene-stat"><div class="hygiene-stat-value">107</div><div>CFU/ml after 30 days</div></div>
+        <div class="hygiene-stat"><div class="hygiene-stat-value">2–3</div><div>Days for biofilm</div></div>
+        <div class="hygiene-stat"><div class="hygiene-stat-value">94%</div><div>Formula 420 efficiency</div></div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Method</th><th>Resin Removal</th><th>Mineral Removal</th><th>Compatibility</th></tr></thead>
+        <tbody>
+          <tr><td>Isopropyl Alcohol + Salt</td><td><span class="method-badge badge-high">High</span></td><td><span class="method-badge badge-medium">Medium</span></td><td>Glass, ceramic, metal</td></tr>
+          <tr><td>Acids (vinegar)</td><td><span class="method-badge badge-medium">Medium</span></td><td><span class="method-badge badge-high">High</span></td><td>Glass, ceramic</td></tr>
+          <tr><td>Enzymatic Cleaners</td><td><span class="method-badge badge-medium">Medium</span></td><td><span class="method-badge badge-low">Low</span></td><td>All materials (safe)</td></tr>
+          <tr><td>Formula 420</td><td><span class="method-badge badge-high">Very High</span></td><td><span class="method-badge badge-medium">Medium</span></td><td>Glass, metal, ceramic</td></tr>
+        </tbody>
+      </table>
+      <div class="risk-timeline">
+        <div class="timeline-item"><strong>Day 1-2</strong> – Minimal Risk: fresh water</div>
+        <div class="timeline-item"><strong>Day 3-5</strong> – Initial biofilm formation</div>
+        <div class="timeline-item"><strong>Day 7-10</strong> – Increased risk, cleaning recommended</div>
+        <div class="timeline-item"><strong>Day 14+</strong> – High risk, urgent cleaning needed</div>
+        <div class="timeline-item"><strong>Day 30+</strong> – Critical risk, potential health hazard</div>
+      </div>
+      <div class="card" style="padding:28px;"><h3>Interactive Simulator</h3><p>Select cleaning method to see efficiency:</p><div style="display:flex; gap:12px; margin:16px 0;"><button class="btn-ghost" data-method="iso">Iso + Salt</button><button class="btn-ghost" data-method="f420">Formula 420</button><button class="btn-ghost" data-method="vinegar">Vinegar</button><button class="btn-ghost" data-method="enzyme">Enzymatic</button></div><div id="simResult" style="font-size:1.2rem; font-weight:700;">Efficiency: —</div></div>
+    </div>
+  </div>
+
+  <!-- B2B PAGE -->
+  <div id="b2bPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;">
+      <div class="section-label">Wholesale</div>
+      <h1 class="h1">B2B <span style="color:var(--accent);">Partnership</span></h1>
+      <div class="card" style="padding:32px;">
+        <h3>Entry Conditions</h3><p>At least 2 of: offline activity, audience overlap, physical integration, experience, brand alignment.</p>
+        <h3>Loyalty Levels</h3><div class="level-card"><div>5% – Entry</div><div>8% – Verified</div><div>10% – Inner Circle</div></div>
+        <h3>Privileges</h3><p>Limited drops, early access, gifts, co‑branding.</p>
+        <h3>Rules</h3><p>Discounts do not stack, program not a public offer.</p>
+        <form id="b2bForm"><div class="form-group"><label>Company Name</label><input type="text" id="b2bName" required></div><div class="form-group"><label>Contact / Telegram</label><input type="text" id="b2bContact" required></div><div class="form-group"><label>Message</label><textarea id="b2bMsg" rows="4"></textarea></div><button type="submit" class="btn-primary">Send Request →</button></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2C PAGE -->
+  <div id="b2cPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;">
+      <div class="section-label">Engagement</div>
+      <h1 class="h1">B2C <span style="color:var(--accent);">Program</span></h1>
+      <div class="card" style="padding:32px;">
+        <p>Affiliate, influencer, ambassador. Join the community.</p>
+        <h3>Entry Conditions</h3><p>Real audience, brand alignment, activity.</p>
+        <h3>Levels</h3><div class="level-card"><div>5% – Entry</div><div>8% – Verified</div><div>10% – Inner Circle</div></div>
+        <form id="b2cForm"><div class="form-group"><label>Your Name</label><input type="text" id="b2cName" required></div><div class="form-group"><label>Channel / Social</label><input type="text" id="b2cChannel" required></div><div class="form-group"><label>Why collaborate?</label><textarea id="b2cMsg" rows="4"></textarea></div><button type="submit" class="btn-primary">Apply →</button></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLUB PAGE -->
+  <div id="clubPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Loyalty</div><h1 class="h1">DON BONG <span style="color:var(--accent);">Club</span></h1>
+      <div class="level-card"><div class="level-title">🥉 Bronze</div><div>5% discount, Telegram channel</div><div class="level-percent">5%</div></div>
+      <div class="level-card"><div class="level-title">🥈 Silver</div><div>8% discount, early access, personal manager</div><div class="level-percent">8%</div></div>
+      <div class="level-card"><div class="level-title">🥇 Gold</div><div>12% discount, exclusive collabs, free shipping</div><div class="level-percent">12%</div></div>
+      <div class="level-card"><div class="level-title">💎 Platinum</div><div>15% discount, VIP pass, personal curator</div><div class="level-percent">15%</div></div>
+      <div class="card" style="padding:32px;"><h3>Referral Program</h3><p>Bring a friend – get $6.50 + 5% from their purchases.</p><button class="btn-primary" onclick="window.showPage('b2c')">Join Now</button></div>
+    </div>
+  </div>
+
+  <!-- BLUEPRINT PAGE -->
+  <div id="blueprintPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Engineering</div><h1 class="h1">Laboratory Glass <span style="color:var(--accent);">Blueprint</span></h1>
+      <div class="card" style="padding:32px;">
+        <svg class="blueprint-svg" viewBox="0 0 800 1000">
+          <ellipse cx="400" cy="920" rx="140" ry="20" fill="none" stroke="var(--accent)" stroke-width="4"/>
+          <rect x="300" y="730" width="200" height="120" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M300 730 L300 220 Q300 180 330 170 Q400 155 470 170 Q500 180 500 220 L500 730" fill="none" stroke="var(--accent)" stroke-width="4"/>
+          <ellipse cx="400" cy="170" rx="85" ry="15" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M520 680 L620 540 L650 565 L550 705 Z" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="602.5" cy="675" r="22" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+        </svg>
+        <div class="form-group"><label>Glass Thickness (mm)</label><input type="number" id="glassThick" value="5"></div>
+        <div class="form-group"><label>Total Height (cm)</label><input type="number" id="totalHeight" value="45"></div>
+        <button class="btn-primary" onclick="window.exportBlueprint?.()">Export Blueprint</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="aboutPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Our Story</div><h1 class="h1" style="text-align:center;">About <span style="color:var(--accent);">Don Bong</span></h1>
+      <div class="card" style="padding:48px; margin:40px 0; text-align:center;"><p>Don Bong — not just a shop. We unite science, art, and culture of consumption.</p><p>📍 404 Lê Hồng Phong, Nha Trang, Vietnam</p></div>
+      <div class="grid grid-3"><div class="card"><div>🔬</div><h3>Scientific Expertise</h3></div><div class="card"><div>🎨</div><h3>Handcrafted Art</h3></div><div class="card"><div>🌿</div><h3>Pure Experience</h3></div></div>
+      <div><video autoplay muted loop playsinline style="width:100%; border-radius:24px;"><source src="https://video.wixstatic.com/video/3307a2_66407d7d65fd4dbf9ec94f72ab0c3ebd/720p/mp4/file.mp4" type="video/mp4"></video></div>
+    </div>
+  </div>
+
+  <!-- CONTACTS PAGE -->
+  <div id="contactsPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Get in Touch</div><h1 class="h1">Contact <span style="color:var(--accent);">Us</span></h1>
+      <div class="card"><div>📱 <a href="tel:+84815648553">+84 81 564 8553</a></div><div>✉️ <a href="mailto:donbongdealer@gmail.com">donbongdealer@gmail.com</a></div><form id="contactForm"><div class="form-group"><input type="text" placeholder="Your Name" required></div><div class="form-group"><input type="text" placeholder="Telegram / WhatsApp" required></div><div class="form-group"><textarea rows="4" placeholder="Your message" required></textarea></div><button type="submit" class="btn-primary">Send →</button></form></div>
+    </div>
+  </div>
+
+  <!-- SHOP POLICY PAGE -->
+  <div id="shopPolicyPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Policy</div><h1 class="h1">Store <span style="color:var(--accent);">Policy</span></h1>
+      <div class="card"><h3>📦 Shipping</h3><p>Free in Nha Trang over 500k VND.</p><h3>💳 Payment</h3><p>COD, bank transfer, crypto.</p><h3>🔄 Returns</h3><p>14 days unused. Defects: contact within 24h.</p></div>
+    </div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="adminPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Administration</div><h1 class="h1">Admin <span style="color:var(--accent);">Panel</span></h1>
+      <div id="adminLoginForm" style="display: none;">
+        <div class="card" style="padding:40px; max-width:400px; margin:0 auto;"><input type="password" id="adminPassword" placeholder="Enter password" class="fi"><button class="btn-primary" onclick="window.adminLogin(document.getElementById('adminPassword').value)">Login</button></div>
+      </div>
+      <div id="adminContent" style="display: none;">
+        <div class="grid grid-2" style="gap:40px;"><div id="adminProducts" class="card" style="padding:24px;"></div><div id="adminOrders" class="card" style="padding:24px;"></div><div id="adminReviews" class="card" style="padding:24px;"></div><div id="adminSettings" class="card" style="padding:24px;"></div></div>
+        <button class="btn-ghost" onclick="window.adminLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+  <div id="productModal" class="overlay"><div class="modal"><button class="close-btn" onclick="window.closeModal()">✕</button><div id="modalContent"></div></div></div>
+  <div id="cartModal" class="overlay"><div class="modal"><h2>Shopping <span style="color:var(--accent);">Cart</span></h2><div id="cartItems"></div><div id="cartTotal"></div><div style="margin-top:28px;"><input type="text" id="customerName" placeholder="Your Name" class="fi"><input type="text" id="customerContact" placeholder="Telegram / WhatsApp" class="fi"><input type="text" id="customerAddress" placeholder="Delivery Address" class="fi"><button id="checkoutBtn" class="btn-primary">Confirm Order →</button><button class="btn-ghost" onclick="window.closeModal()">Continue Shopping</button></div></div></div>
+  <div id="reviewModal" class="overlay"><div class="modal" id="reviewModalContent"></div></div>
+  <div id="toasts"></div>
+  <div id="purityRoot"></div>
+  <div id="socialHubRoot"></div>
+  <div id="ai-consultant-root"></div>
 
   <footer class="footer">
     <div class="container">
@@ -240,14 +433,6 @@
       <div class="footer-bottom"><p>© 2025 Don Bong. 404 Lê Hồng Phong, Nha Trang, Vietnam.</p><p>v3.0 (Modular)</p></div>
     </div>
   </footer>
-
-  <div id="productModal" class="overlay"><div class="modal"><button class="close-btn" onclick="window.closeModal()">✕</button><div id="modalContent"></div></div></div>
-  <div id="cartModal" class="overlay"><div class="modal"><h2>Shopping <span style="color:var(--accent);">Cart</span></h2><div id="cartItems"></div><div id="cartTotal"></div><div style="margin-top:28px;"><input type="text" id="customerName" placeholder="Your Name" class="fi"><input type="text" id="customerContact" placeholder="Telegram / WhatsApp" class="fi"><input type="text" id="customerAddress" placeholder="Delivery Address" class="fi"><button id="checkoutBtn" class="btn-primary">Confirm Order →</button><button class="btn-ghost" onclick="window.closeModal()">Continue Shopping</button></div></div></div>
-  <div id="reviewModal" class="overlay"><div class="modal" id="reviewModalContent"></div></div>
-  <div id="toasts"></div>
-  <div id="purityRoot"></div>
-  <div id="socialHubRoot"></div>
-  <div id="ai-consultant-root"></div>
 </div>
 
 <script>
@@ -294,7 +479,7 @@
       if(data.error) throw new Error(data.error);
       allProducts = data.map(p => ({
         id: String(p.id), name: p.name || 'Unnamed', category: p.category || 'accessories', brand: p.brand || '',
-        price: parseFloat(p.price) || 0, oldPrice: parseFloat(p.oldPrice) || 0, description: p.description || '',
+        price: parseFloat(p.price) || 0, oldPrice: parseFloat(p.oldPrice) || 0, description: p.briefDesc || p.description || '',
         image: p.imageUrl || 'https://placehold.co/300x300/1a1a1a/ffaa44?text=Glass', gallery: p.gallery ? (Array.isArray(p.gallery)?p.gallery:p.gallery.split(',').map(s=>s.trim())) : [],
         inStock: p.inStock === true || p.inStock === 'TRUE', stockQty: parseInt(p.stockQty) || 0, sku: p.sku || ''
       }));
@@ -305,7 +490,7 @@
       applyFilters();
       // arrivals grid
       const arrivals = document.getElementById('arrivalsGrid');
-      if(arrivals && allProducts.length) arrivals.innerHTML = allProducts.slice(0,4).map(p=>`<div class="card" onclick="window.showPage('shop')"><div class="card-img" style="display:flex; align-items:center; justify-content:center; font-size:4rem;">🌀</div><div class="card-body"><div class="card-title">${escapeHtml(p.name)}</div><div class="card-price">${formatPrice(p.price)}</div></div></div>`).join('');
+      if(arrivals && allProducts.length) arrivals.innerHTML = allProducts.slice(0,4).map(p=>`<div class="card" onclick="window.showPage('shop')"><div class="card-img" style="display:flex; align-items:center; justify-content:center; font-size:4rem;">${p.category.includes('Bong')?'🌀':p.category.includes('Grinder')?'🪨':'🔥'}</div><div class="card-body"><div class="card-title">${escapeHtml(p.name)}</div><div class="card-price">${formatPrice(p.price)}</div></div></div>`).join('');
     } catch(e) { console.error(e); document.getElementById('productsGrid').innerHTML = '<div style="text-align:center;padding:60px;">Failed to load products</div>'; }
   }
   function applyFilters() {
@@ -393,7 +578,7 @@
     } else showToast('Error sending order');
   }
 
-  // ========== ОСТАЛЬНЫЕ СТРАНИЦЫ (заглушки, но их контент уже встроен в HTML) ==========
+  // ========== РОУТИНГ ==========
   window.showPage = function(id) {
     const pages = ['home','shop','favorites','library','perc','hygiene','b2b','b2c','club','blueprint','about','contacts','shopPolicy','admin'];
     pages.forEach(p=>{ const el = document.getElementById(p+'Page'); if(el) el.classList.remove('active','page-visible'); });
@@ -406,6 +591,7 @@
     window.scrollTo(0,0);
   };
 
+  // ========== ИНИЦИАЛИЗАЦИЯ ==========
   document.addEventListener('DOMContentLoaded', () => {
     // темы
     const themes = ['dark','light','blue','gold'];
@@ -425,15 +611,20 @@
     document.getElementById('contactForm')?.addEventListener('submit',e=>{ e.preventDefault(); alert('Message sent (demo)'); });
     document.getElementById('prevSlide')?.addEventListener('click',()=>{ const track=document.getElementById('testimonialTrack'); if(track){ let idx=parseInt(track.dataset.idx||0); const total=track.children.length; idx=(idx-1+total)%total; track.style.transform=`translateX(-${idx*100}%)`; track.dataset.idx=idx; } });
     document.getElementById('nextSlide')?.addEventListener('click',()=>{ const track=document.getElementById('testimonialTrack'); if(track){ let idx=parseInt(track.dataset.idx||0); const total=track.children.length; idx=(idx+1)%total; track.style.transform=`translateX(-${idx*100}%)`; track.dataset.idx=idx; } });
-    document.querySelectorAll('.comparison-btn')?.forEach(btn=>btn.addEventListener('click',()=>{ /* сравнение перколяторов – код уже был, его можно добавить */ }));
-    document.querySelectorAll('[data-method]')?.forEach(btn=>btn.addEventListener('click',()=>{ const eff={iso:95,f420:98,vinegar:70,enzyme:80}[btn.dataset.method]; document.getElementById('simResult').innerHTML = `Efficiency: ${eff}%`; }));
+    // сравнение перколяторов
+    const percData = { downstem:{name:'Downstem',filtration:'★★☆☆☆',drag:'★☆☆☆☆',maintenance:'★☆☆☆☆',cooling:'★★☆☆☆'}, inline:{name:'Inline',filtration:'★★★☆☆',drag:'★★☆☆☆',maintenance:'★★☆☆☆',cooling:'★★★☆☆'}, tree:{name:'Tree',filtration:'★★★★★',drag:'★★★☆☆',maintenance:'★★★★☆',cooling:'★★★★☆'}, showerhead:{name:'Showerhead',filtration:'★★★★☆',drag:'★★☆☆☆',maintenance:'★★☆☆☆',cooling:'★★★★☆'}, honeycomb:{name:'Honeycomb',filtration:'★★★★★',drag:'★★★☆☆',maintenance:'★★★★★',cooling:'★★★★★'}, turbine:{name:'Turbine',filtration:'★★★★☆',drag:'★★★★☆',maintenance:'★★★★☆',cooling:'★★★★☆'}, matrix:{name:'Matrix',filtration:'★★★★★',drag:'★★★★☆',maintenance:'★★★★☆',cooling:'★★★★★'}, coil:{name:'Coil',filtration:'★★★★☆',drag:'★★★★★',maintenance:'★★★☆☆',cooling:'★★★★★'} };
+    let selected = [];
+    const compareBtns = document.querySelectorAll('.comparison-btn');
+    compareBtns.forEach(btn=>{ btn.addEventListener('click',()=>{ const id=btn.dataset.perc; if(btn.classList.contains('selected')){ btn.classList.remove('selected'); selected=selected.filter(p=>p!==id); } else { if(selected.length>=3){ alert('You can compare up to 3 percolators'); return; } btn.classList.add('selected'); selected.push(id); } for(let i=0;i<3;i++){ const col=document.getElementById(`col${i+1}`); if(i<selected.length){ col.textContent=percData[selected[i]].name; col.style.display=''; } else { col.textContent='Select Percolator'; col.style.display='none'; } } const props=['filtration','drag','maintenance','cooling']; props.forEach(prop=>{ for(let i=0;i<3;i++){ const cell=document.getElementById(`val${i+1}-${prop.slice(0,3)}`); if(i<selected.length){ cell.textContent=percData[selected[i]][prop]; cell.style.display=''; } else { cell.textContent='—'; cell.style.display='none'; } } }); }); });
+    // симулятор гигиены
+    document.querySelectorAll('[data-method]').forEach(btn=>{ btn.addEventListener('click',()=>{ const eff={iso:95,f420:98,vinegar:70,enzyme:80}[btn.dataset.method]; document.getElementById('simResult').innerHTML = `Efficiency: ${eff}%`; }); });
     window.exportBlueprint = ()=>{ alert('Blueprint exported'); };
     window.closeModal = closeModal;
     window.addToCart = addToCart;
     window.toggleFavorite = toggleFavorite;
     fetchProducts();
     updateBadges();
-    // social hub и purity test (React)
+    // React-компоненты
     const PurityTest = () => { const [step,setStep]=React.useState('intro'); const [answers,setAnswers]=React.useState([]); const [current,setCurrent]=React.useState(0); const q = [{text:"How often clean?",opts:[{label:"After every use",score:10},{label:"Weekly",score:5},{label:"Rarely",score:0}]},{text:"What use?",opts:[{label:"Special formula",score:10},{label:"Iso+Salt",score:8},{label:"Just water",score:0}]},{text:"Water change?",opts:[{label:"Every session",score:10},{label:"Daily",score:5},{label:"When smells",score:0}]}]; const total=answers.reduce((a,b)=>a+b,0); if(step==='result'){ let title,emoji,desc; if(total>=25){title="Purity Master";emoji="✨";desc="Perfect!";}else if(total>=15){title="Clean Enthusiast";emoji="🧼";desc="Good habits";}else{title="Needs Care";emoji="🦠";desc="Deep clean needed";} return React.createElement('div',{className:"card",style:{padding:'36px',textAlign:'center'}},React.createElement('div',{style:{fontSize:'3rem'}},emoji),React.createElement('h3',null,title),React.createElement('div',{style:{fontSize:'32px',color:'var(--accent)'}},total+'/30'),React.createElement('p',null,desc),React.createElement('button',{className:"btn-primary",onClick:()=>{setStep('intro');setAnswers([]);setCurrent(0);}},"Restart")); } if(step==='quiz'){ const qu=q[current]; return React.createElement('div',{className:"card",style:{padding:'32px'}},React.createElement('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:'20px',color:'var(--accent)'}},React.createElement('span',null,'Q '+(current+1)+'/'+q.length),React.createElement('span',null,'Score: '+total)),React.createElement('h3',null,qu.text),React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'12px',marginTop:'24px'}},qu.opts.map((opt,i)=>React.createElement('button',{key:i,className:"btn-ghost",onClick:()=>{setAnswers([...answers,opt.score]); if(current+1<q.length) setCurrent(current+1); else setStep('result'); }},opt.label)))); } return React.createElement('div',{className:"card",style:{padding:'36px',textAlign:'center'}},React.createElement('div',{style:{fontSize:'3rem'}},'🧼'),React.createElement('h3',{style:{fontSize:'32px',color:'var(--accent)'}},'PURITY TEST'),React.createElement('p',null,'3 quick questions'),React.createElement('button',{className:"btn-primary",onClick:()=>setStep('quiz')},"Take Test →")); };
     const SocialHub = () => { const socials=[{icon:'✈️',name:'Telegram',url:'https://t.me/donbongvn'},{icon:'📸',name:'Instagram',url:'#'},{icon:'📘',name:'Facebook',url:'#'},{icon:'🎵',name:'TikTok',url:'#'}]; return React.createElement('div',{className:"social-hub"},socials.map(s=>React.createElement('a',{key:s.name,href:s.url,target:'_blank',className:"social-link"},s.icon))); };
     const AIConsultant = () => { const [open,setOpen]=React.useState(false); const [msgs,setMsgs]=React.useState([{role:'bot',text:'Hi! Ask me about home, travel, gift, clean'}]); const [input,setInput]=React.useState(''); const send=()=>{ if(!input.trim()) return; setMsgs([...msgs,{role:'user',text:input}]); setInput(''); setTimeout(()=>{ let reply='I can help!'; const t=input.toLowerCase(); if(t.includes('home')) reply='For home use, tall Beaker Bongs!'; if(t.includes('travel')) reply='Silicone Pipes or Mini Rigs!'; setMsgs(prev=>[...prev,{role:'bot',text:reply}]); },600); }; React.useEffect(()=>{ const btn=document.getElementById('rnd-btn'); if(btn) btn.addEventListener('click',()=>setOpen(o=>!o)); },[]); if(!open) return null; return React.createElement('div',{className:"card",style:{position:'fixed',bottom:'90px',left:'28px',width:'320px',height:'420px',display:'flex',flexDirection:'column',zIndex:1000,border:`1px solid var(--accent)`}},React.createElement('div',{style:{background:'var(--accent-dim)',padding:'16px',display:'flex',justifyContent:'space-between'}},React.createElement('h3',null,'DON AI'),React.createElement('button',{onClick:()=>setOpen(false),style:{background:'none',border:'none',color:'var(--text-primary)',cursor:'pointer'}},'✕')),React.createElement('div',{style:{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:'12px'}},msgs.map((m,i)=>React.createElement('div',{key:i,style:{alignSelf:m.role==='user'?'flex-end':'flex-start',background:m.role==='user'?'var(--accent)':'var(--surface)',padding:'10px 14px',borderRadius:'16px',color:m.role==='user'?'var(--bg-primary)':'var(--text-primary)'}},m.text))),React.createElement('form',{onSubmit:e=>{e.preventDefault();send();},style:{padding:'12px',borderTop:'1px solid var(--border-light)',display:'flex',gap:'8px'}},React.createElement('input',{type:'text',value:input,onChange:e=>setInput(e.target.value),placeholder:"Ask...",style:{flex:1,padding:'10px',borderRadius:'30px',background:'var(--surface)',color:'var(--text-primary)',border:'1px solid var(--border-light)'}}),React.createElement('button',{type:'submit',className:"btn-primary",style:{padding:'8px 16px'}},'→')));
@@ -450,7 +641,7 @@
     if(add){ e.preventDefault(); const prod = allProducts.find(p=>p.id===add.dataset.id); if(prod) addToCart(prod); return; }
     const card = e.target.closest('.card[data-id]');
     if(card && !card.classList.contains('fav-btn') && !card.classList.contains('add-btn')){
-      e.preventDefault(); const prod = allProducts.find(p=>p.id===card.dataset.id); if(prod){ currentProduct = prod; window.openProductModal?.(prod.id); } // если реализована модалка
+      e.preventDefault(); const prod = allProducts.find(p=>p.id===card.dataset.id); if(prod){ currentProduct = prod; /* здесь можно открыть модалку */ showToast(`Selected: ${prod.name}`); }
     }
   });
 </script>
