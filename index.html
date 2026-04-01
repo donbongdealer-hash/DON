@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Don Bong — Modular Platform</title>
+  <!-- React (глобальный) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="core.css">
+  <!-- Утилиты, навигация, магазин, React-компоненты, админка -->
+  <script src="utils.js" defer></script>
+  <script src="navigation.js" defer></script>
+  <script src="shop.js" defer></script>
+  <script src="react-components.js" defer></script>
+  <script src="admin.js" defer></script>
+  <style>
+    /* Минимальные стили для skeleton – всё остальное в core.css */
+    body { margin: 0; background: var(--bg-primary); color: var(--text-primary); }
+    .page { display: none; }
+    .page.active { display: block; }
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 200; }
+    .overlay.open { display: flex; }
+  </style>
+</head>
+<body>
+  <!-- Шапка и меню -->
+  <div class="nav-wrap">
+    <a href="#" class="nav-logo" data-page="home">DON BONG</a>
+    <div class="nav-links">
+      <button class="nav-btn" data-page="home">Home</button>
+      <button class="nav-btn" data-page="shop">Shop</button>
+      <button class="nav-btn" data-page="library">Library</button>
+      <button class="nav-btn" data-page="perc">Percolation</button>
+      <button class="nav-btn" data-page="hygiene">Hygiene</button>
+      <button class="nav-btn" data-page="b2b">B2B</button>
+      <button class="nav-btn" data-page="b2c">B2C</button>
+      <button class="nav-btn" data-page="club">Club</button>
+      <button class="nav-btn" data-page="blueprint">Blueprint</button>
+      <button class="nav-btn" data-page="about">About</button>
+      <button class="nav-btn" data-page="contacts">Contacts</button>
+      <button class="nav-btn" data-page="shopPolicy">Policy</button>
+      <button class="nav-btn" data-page="admin">Admin</button>
+    </div>
+    <div class="nav-right" style="display: flex; gap: 12px; align-items: center;">
+      <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-btn" data-theme="dark" title="Dark">🌙</button>
+        <button class="theme-btn" data-theme="light" title="Light">☀️</button>
+        <button class="theme-btn" data-theme="blue" title="Blue">💙</button>
+        <button class="theme-btn" data-theme="gold" title="Gold">✨</button>
+      </div>
+      <button class="nav-btn" data-page="favorites" style="background:var(--surface); border:1px solid var(--border-light); border-radius:40px; padding:8px 16px; display: flex; gap:6px;">🤍 Favs <span id="favCount" style="background:var(--accent); color:#000; border-radius:20px; padding:2px 8px; font-size:12px;">0</span></button>
+      <button id="cartIconBtn" style="background: var(--accent-dim); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 40px; cursor: pointer; font-family: var(--font-cond); font-weight: 700; font-size: 14px; color: var(--text-primary); position: relative;">🛒 Cart <span id="cartBadge" class="badge" style="position: absolute; top: -6px; right: -6px; background: var(--accent); color: #000; font-size: 10px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: none; align-items: center; justify-content: center;">0</span></button>
+    </div>
+  </div>
+
+  <!-- КОНТЕЙНЕРЫ СТРАНИЦ (заполнить содержимым позже) -->
+  <div id="homePage" class="page">
+    <div class="container" style="padding-top: 100px;">
+      <h1>Главная страница</h1>
+      <p>Содержимое главной страницы будет здесь. Вставьте ваш HTML-контент.</p>
+    </div>
+  </div>
+
+  <div id="shopPage" class="page">
+    <div class="container" style="padding-top: 140px;">
+      <div class="hero-shop"><h1 class="h1">Premium <span style="color:var(--accent);">Shop</span></h1><p class="section-sub">Curated selection of premium bongs, pipes, grinders.</p></div>
+      <div class="shop-controls" style="display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap;">
+        <select id="categoryFilter" class="filter-select"><option value="">All Categories</option></select>
+        <select id="brandFilter" class="filter-select"><option value="">All Brands</option></select>
+        <select id="sortSelect" class="filter-select"><option value="name">Sort: Name</option><option value="price-asc">Price: Low → High</option><option value="price-desc">Price: High → Low</option></select>
+        <span style="margin-left:auto;"><span id="productCount">0</span> products</span>
+      </div>
+      <div id="productsGrid" class="pgrid"></div>
+      <div id="pagination" style="display:flex; justify-content:center; gap:8px; margin-top:40px;"></div>
+    </div>
+  </div>
+
+  <div id="favoritesPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Your Wishlist</div><h1 class="h1">Saved <span style="color:var(--accent);">Products</span></h1><div id="favsGrid" class="grid grid-auto-fit"></div></div>
+  </div>
+
+  <div id="libraryPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Knowledge</div><h1 class="h1">Science <span style="color:var(--accent);">Library</span></h1><div id="libraryGrid" class="grid grid-auto-fit"></div></div>
+  </div>
+
+  <div id="percPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Filtration</div><h1 class="h1">Percolation <span style="color:var(--accent);">Science</span></h1><div id="percGrid" class="perc-grid"></div><div id="comparisonButtons" class="comparison-buttons"></div><table class="comparison-table" id="comparisonTable"><thead><tr><th>Property</th><th id="col1">Select</th><th id="col2">Select</th><th id="col3">Select</th></tr></thead><tbody><tr><td>Filtration</td><td id="val1-fil">—</td><td id="val2-fil">—</td><td id="val3-fil">—</td></tr><tr><td>Drag</td><td id="val1-drg">—</td><td id="val2-drg">—</td><td id="val3-drg">—</td></tr><tr><td>Maintenance</td><td id="val1-mnt">—</td><td id="val2-mnt">—</td><td id="val3-mnt">—</td></tr><tr><td>Cooling</td><td id="val1-clg">—</td><td id="val2-clg">—</td><td id="val3-clg">—</td></tr></tbody></table></div>
+  </div>
+
+  <div id="hygienePage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Research</div><h1 class="h1">Bong Hygiene <span style="color:var(--accent);">Science</span></h1><div id="hygieneContent"></div></div>
+  </div>
+
+  <div id="b2bPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Wholesale</div><h1 class="h1">B2B <span style="color:var(--accent);">Partnership</span></h1><div class="card"><form id="b2bForm"><div class="form-group"><label>Company Name</label><input type="text" id="b2bName" required></div><div class="form-group"><label>Contact / Telegram</label><input type="text" id="b2bContact" required></div><div class="form-group"><label>Message</label><textarea id="b2bMsg" rows="4"></textarea></div><button type="submit" class="btn-primary">Send Request →</button></form></div></div>
+  </div>
+
+  <div id="b2cPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Engagement</div><h1 class="h1">B2C <span style="color:var(--accent);">Program</span></h1><div class="card"><form id="b2cForm"><div class="form-group"><label>Your Name</label><input type="text" id="b2cName" required></div><div class="form-group"><label>Channel / Social</label><input type="text" id="b2cChannel" required></div><div class="form-group"><label>Why collaborate?</label><textarea id="b2cMsg" rows="4"></textarea></div><button type="submit" class="btn-primary">Apply →</button></form></div></div>
+  </div>
+
+  <div id="clubPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Loyalty</div><h1 class="h1">DON BONG <span style="color:var(--accent);">Club</span></h1><div id="clubLevels"></div></div>
+  </div>
+
+  <div id="blueprintPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Engineering</div><h1 class="h1">Laboratory Glass <span style="color:var(--accent);">Blueprint</span></h1><div class="card"><svg class="blueprint-svg" viewBox="0 0 800 1000"><ellipse cx="400" cy="920" rx="140" ry="20" fill="none" stroke="var(--accent)" stroke-width="4"/><rect x="300" y="730" width="200" height="120" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M300 730 L300 220 Q300 180 330 170 Q400 155 470 170 Q500 180 500 220 L500 730" fill="none" stroke="var(--accent)" stroke-width="4"/><ellipse cx="400" cy="170" rx="85" ry="15" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M520 680 L620 540 L650 565 L550 705 Z" fill="none" stroke="var(--accent)" stroke-width="3"/><circle cx="602.5" cy="675" r="22" fill="none" stroke="var(--accent)" stroke-width="2.5"/></svg><div class="form-group"><label>Glass Thickness (mm)</label><input type="number" id="glassThick" value="5"></div><button class="btn-primary" onclick="window.exportBlueprint?.()">Export Blueprint</button></div></div>
+  </div>
+
+  <div id="aboutPage" class="page">
+    <div class="container" style="padding-top:140px;"><div class="section-label">Our Story</div><h1 class="h1">About <span style="color:var(--accent);">Don Bong</span></h1><div class="card"><p>Don Bong — not just a shop. We unite science, art, and culture of consumption.</p><p>📍 404 Lê Hồng Phong, Nha Trang, Vietnam</p></div><div><video autoplay muted loop playsinline src="https://video.wixstatic.com/video/3307a2_66407d7d65fd4dbf9ec94f72ab0c3ebd/720p/mp4/file.mp4" style="width:100%; border-radius:24px;"></video></div></div>
+  </div>
+
+  <div id="contactsPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Get in Touch</div><h1 class="h1">Contact <span style="color:var(--accent);">Us</span></h1><div class="card"><div>📱 <a href="tel:+84815648553">+84 81 564 8553</a></div><div>✉️ <a href="mailto:donbongdealer@gmail.com">donbongdealer@gmail.com</a></div><form id="contactForm"><div class="form-group"><input type="text" placeholder="Your Name" required></div><div class="form-group"><input type="text" placeholder="Telegram / WhatsApp" required></div><div class="form-group"><textarea rows="4" placeholder="Your message" required></textarea></div><button type="submit" class="btn-primary">Send →</button></form></div></div>
+  </div>
+
+  <div id="shopPolicyPage" class="page">
+    <div class="container" style="padding-top:140px; max-width:800px;"><div class="section-label">Policy</div><h1 class="h1">Store <span style="color:var(--accent);">Policy</span></h1><div class="card"><h3>📦 Shipping</h3><p>Free in Nha Trang over 500k VND.</p><h3>💳 Payment</h3><p>COD, bank transfer, crypto.</p><h3>🔄 Returns</h3><p>14 days unused. Defects: contact within 24h.</p></div></div>
+  </div>
+
+  <div id="adminPage" class="page">
+    <div class="container" style="padding-top:140px;">
+      <div class="section-label">Administration</div>
+      <h1 class="h1">Admin <span style="color:var(--accent);">Panel</span></h1>
+      <div id="adminLoginForm" style="display: none;">
+        <div class="card" style="padding:40px; max-width:400px; margin:0 auto;">
+          <input type="password" id="adminPassword" placeholder="Enter password" class="fi">
+          <button class="btn-primary" onclick="window.adminLogin(document.getElementById('adminPassword').value)">Login</button>
+        </div>
+      </div>
+      <div id="adminContent" style="display: none;">
+        <div class="grid grid-2" style="gap:40px;">
+          <div id="adminProducts" class="card" style="padding:24px;"></div>
+          <div id="adminOrders" class="card" style="padding:24px;"></div>
+          <div id="adminReviews" class="card" style="padding:24px;"></div>
+          <div id="adminSettings" class="card" style="padding:24px;"></div>
+        </div>
+        <button class="btn-ghost" onclick="window.adminLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНЫЕ ОКНА -->
+  <div id="productModal" class="overlay"><div class="modal"><button class="close-btn" onclick="window.closeModal()">✕</button><div id="modalContent"></div></div></div>
+  <div id="cartModal" class="overlay"><div class="modal"><h2>Shopping <span style="color:var(--accent);">Cart</span></h2><div id="cartItems"></div><div id="cartTotal"></div><div style="margin-top:28px;"><input type="text" id="customerName" placeholder="Your Name" class="fi"><input type="text" id="customerContact" placeholder="Telegram / WhatsApp" class="fi"><input type="text" id="customerAddress" placeholder="Delivery Address" class="fi"><button id="checkoutBtn" class="btn-primary">Confirm Order →</button><button class="btn-ghost" onclick="window.closeModal()">Continue Shopping</button></div></div></div>
+  <div id="reviewModal" class="overlay"><div class="modal" id="reviewModalContent"></div></div>
+  <div id="toasts"></div>
+  <div id="purityRoot"></div>
+  <div id="socialHubRoot"></div>
+  <div id="ai-consultant-root"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="#" class="footer-logo" data-page="home">DON BONG</a><p class="footer-tag">Science-backed wellness. Pure ingredients, proven results.</p></div>
+        <div><div class="footer-col-label">Navigate</div><ul class="footer-nav"><li><a href="#" data-page="home">Home</a></li><li><a href="#" data-page="shop">Shop</a></li><li><a href="#" data-page="favorites">Favorites ❤️</a></li><li><a href="#" data-page="about">About Us</a></li><li><a href="#" data-page="contacts">Contacts</a></li><li><a href="#" data-page="shopPolicy">Shop Policy</a></li></ul></div>
+        <div><div class="footer-col-label">Legal</div><ul class="footer-nav"><li><a href="#" data-page="shopPolicy">Shipping & Returns</a></li><li><a href="#" data-page="shopPolicy">Store Policy</a></li></ul></div>
+        <div><div class="footer-col-label">Explore More</div><a href="#" class="footer-cta-link" data-page="library">Science Library →</a><a href="#" class="footer-cta-link" data-page="b2b">Wholesale · B2B →</a><a href="#" class="footer-cta-link" data-page="club">Don Bong Club →</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Don Bong. 404 Lê Hồng Phong, Nha Trang, Vietnam.</p><p>v3.0 (Modular)</p></div>
+    </div>
+  </footer>
+</body>
+</html>
